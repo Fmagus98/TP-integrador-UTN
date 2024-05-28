@@ -2,5 +2,5 @@
 
 ## Mi primer repositorio
 
-### Hola mundo 🌎
+Hola mundo 🌎
 
