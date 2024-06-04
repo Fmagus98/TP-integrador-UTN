@@ -1,0 +1,2 @@
+Algoritmo trabajoIntegrador
+FinAlgoritmo
