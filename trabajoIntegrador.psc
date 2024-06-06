@@ -37,25 +37,26 @@ Proceso trabajoIntegrador
     Escribir "2. Hamburguesa con Queso - $1000.00";
     Escribir "3. Hamburguesa Doble - $1500";
     Escribir "Seleccione el tipo de hamburguesa (1-3):";
-    Leer tipoHamburguesa;
     // podriamos añadir combos y en caso de que selecione un combo se descarta los adicionales
-    Segun tipoHamburguesa Hacer
-        1:  
-			hamburguesa <- 500;
-            total <- total + 500;
-            tiempoEspera <- tiempoEspera + 2;
-        2:
-			hamburguesa <- 1000;
-            total <- total + 1000;
-            tiempoEspera <- tiempoEspera + 3;
-        3:
-			hamburguesa <- 1500;
-            total <- total + 1500;
-            tiempoEspera <- tiempoEspera + 4;
-        De Otro Modo:
-            Escribir "Selección inválida.";
-		    // podriamos hacer un bucle al menú en el caso de que el numero no sea válido
-	FinSegun
+	Repetir
+		Leer tipoHamburguesa; // guarda que crashea si le pasás un string jaja
+		Segun tipoHamburguesa Hacer
+			1:  
+				hamburguesa <- 500;
+				total <- total + 500;
+				tiempoEspera <- tiempoEspera + 2;
+			2:
+				hamburguesa <- 1000;
+				total <- total + 1000;
+				tiempoEspera <- tiempoEspera + 3;
+			3:
+				hamburguesa <- 1500;
+				total <- total + 1500;
+				tiempoEspera <- tiempoEspera + 4;
+			De Otro Modo:
+				Escribir "Selección inválida. Intente nuevamente.";
+		FinSegun
+	Hasta Que tipoHamburguesa == 1 o tipoHamburguesa == 2 o tipoHamburguesa == 3
 	
 	// Opciones adicionales
 	Escribir "¿Desea carne extra? (S/N) --> $500: ";
@@ -93,30 +94,30 @@ Proceso trabajoIntegrador
 	FinSi
 	
 	Si papas = 'S' o papas = 's' Entonces
-		ticket <- Concatenar(ticket," + Papas fritas: $250");
+		ticket <- concatenar(ticket," + Papas fritas: $250");
 	FinSi
 	
 	Si gaseosa = 'S' o gaseosa = 's' Entonces
-		ticket <- Concatenar(ticket," + Gaseosa: $1000");
+		ticket <- concatenar(ticket," + Gaseosa: $1000");
 	FinSi
 	
 	// Aplicar descuento si está logueado
 	Si logueado = Verdadero Entonces
-		ticket <- Concatenar(ticket, " --> Total: $");
-		ticket <- Concatenar(ticket, convertirATexto(total));
+		ticket <- concatenar(ticket, " --> Total: $");
+		ticket <- concatenar(ticket, ConvertirATexto(total));
 		total <- total * (1 - descuento);
-		ticket <- Concatenar(ticket, " + Descuento del 10% --> Total: $");
-		ticket <- Concatenar(ticket, convertirATexto(total));
+		ticket <- concatenar(ticket, " + Descuento del 10% --> Total: $");
+		ticket <- concatenar(ticket, ConvertirATexto(total));
 
 	SiNo
-		ticket <- Concatenar(ticket," --> Total: $");
-		ticket <- Concatenar(ticket,convertirATexto(total));
+		ticket <- concatenar(ticket," --> Total: $");
+		ticket <- concatenar(ticket,ConvertirATexto(total));
 	FinSi
 	
-	ticket <- Concatenar(ticket, "     Tiempo de espera: ");
-	ticket <- Concatenar(ticket, convertirATexto(tiempoEspera));
-	ticket <- Concatenar(ticket, " minutos");
-	ticket <- Concatenar(ticket, "---------------------------");
+	ticket <- concatenar(ticket, "     Tiempo de espera: ");
+	ticket <- concatenar(ticket, ConvertirATexto(tiempoEspera));
+	ticket <- concatenar(ticket, " minutos");
+	ticket <- concatenar(ticket, "---------------------------");
 	
 	// Mostrar ticket
 	Escribir ticket;
@@ -124,9 +125,9 @@ FinProceso
 
 
 // Tareas a realizar
-// 1_ Crear un bucle en el caso que se elija mal la hamburguesa
+// 1_ Crear un bucle en el caso que se elija mal la hamburguesa [LISTO, ver bug]
 // 2_ Crear un array con clientes
-// 3_ Ver la lógica en el adicional de extra carne cuando se elijió hamburguesa doble
+// 3_ Ver la lógica en el adicional de extra carne cuando se eligió hamburguesa doble
 // 4_ Añadir lógica de precios en tipos de papas
 // 5_ Añadir lógica de precios en tipos de gaseosa
 // 6_ Refactorizar el código --> Final
