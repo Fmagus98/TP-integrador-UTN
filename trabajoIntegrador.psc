@@ -2,9 +2,8 @@ Proceso trabajoIntegrador
     Definir usuario, contrasena Como Caracter;
 	Definir usuarioCorrecto, contrasenaCorrecta Como Caracter;
     Definir logueado Como Logico;
-    Definir tipoHamburguesa Como Entero;
 	Definir hamburguesa Como Real;
-    Definir extraCarne, papas, gaseosa Como Caracter;
+    Definir tipoHamburguesa, extraCarne, papas, gaseosa Como Caracter;
     Definir total, descuento, tiempoEspera Como Real;
     Definir ticket Como Caracter;
     
@@ -39,24 +38,27 @@ Proceso trabajoIntegrador
     Escribir "Seleccione el tipo de hamburguesa (1-3):";
     // podriamos añadir combos y en caso de que selecione un combo se descarta los adicionales
 	Repetir
-		Leer tipoHamburguesa; // guarda que crashea si le pasás un string jaja
-		Segun tipoHamburguesa Hacer
-			1:  
-				hamburguesa <- 500;
-				total <- total + 500;
-				tiempoEspera <- tiempoEspera + 2;
-			2:
-				hamburguesa <- 1000;
-				total <- total + 1000;
-				tiempoEspera <- tiempoEspera + 3;
-			3:
-				hamburguesa <- 1500;
-				total <- total + 1500;
-				tiempoEspera <- tiempoEspera + 4;
-			De Otro Modo:
-				Escribir "Selección inválida. Intente nuevamente.";
-		FinSegun
-	Hasta Que tipoHamburguesa == 1 o tipoHamburguesa == 2 o tipoHamburguesa == 3
+		Leer tipoHamburguesa;
+		Si tipoHamburguesa == "1" Entonces
+            hamburguesa <- 500;
+            total <- total + 500;
+            tiempoEspera <- tiempoEspera + 2;
+        Sino
+            Si tipoHamburguesa == "2" Entonces
+                hamburguesa <- 1000;
+                total <- total + 1000;
+                tiempoEspera <- tiempoEspera + 3;
+            Sino
+                Si tipoHamburguesa == "3" Entonces
+                    hamburguesa <- 1500;
+                    total <- total + 1500;
+                    tiempoEspera <- tiempoEspera + 4;
+                Sino
+                    Escribir "Selección inválida. Intente nuevamente.";
+                FinSi
+            FinSi
+        FinSi
+	Hasta Que tipoHamburguesa == "1" o tipoHamburguesa == "2" o tipoHamburguesa == "3"
 	
 	// Opciones adicionales
 	Escribir "¿Desea carne extra? (S/N) --> $500: ";
