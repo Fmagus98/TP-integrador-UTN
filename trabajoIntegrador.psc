@@ -1,23 +1,28 @@
 Proceso trabajoIntegrador
     Definir usuario, contrasena Como Caracter;
 	Definir usuarioCorrecto, contrasenaCorrecta Como Caracter;
-	
+	Definir usuarioItem, contrasenaItem Como Caracter;
+	Dimension usuarioItem[2],contrasenaItem[2];
     Definir logueado Como Logico;
-	Definir hamburguesa Como Real;
 	
+	Definir hamburguesa Como Real;
 	Definir nroItem, nombres Como Caracter;
 	Definir precios, tiempos Como Real;
-	Definir i, tipo Como Entero;
+	Definir i, tipo, n Como Entero;
 	Dimension nroItem[3], nombres[3], precios[3], tiempos[3];
     
 	Definir tipoHamburguesa, extraCarne, papas, gaseosa Como Caracter;
     Definir total, descuento, tiempoEspera Como Real;
     Definir ticket Como Caracter;
     
-    // Variables de usuario y contraseña para login
-    usuarioCorrecto <- "admin";
-    contrasenaCorrecta <- "1234";
+	//Usuarios Precargados
+	usuarioItem[0] <- "admin";
+    contrasenaItem[0] <- "1234";
+	
+	usuarioItem[1] <- "user";
+    contrasenaItem[1] <- "4321";
     
+	
     logueado <- Falso;
     total <- 0;
     descuento <- 0.1; // 10% de descuento para usuarios logueados
@@ -29,13 +34,20 @@ Proceso trabajoIntegrador
     Leer usuario;
     Escribir "Ingrese su contraseña: ";
     Leer contrasena;
-    
-    Si usuario = usuarioCorrecto y contrasena = contrasenaCorrecta Entonces
-        logueado <- Verdadero;
-        Escribir "Login exitoso. Usted recibirá un descuento del 10%.";
-    SiNo
-        Escribir "Login fallido. No recibirá descuento.";
-    FinSi
+    n <- 0;
+	
+	Mientras n < 2 y logueado == Falso Hacer
+		Si usuario = usuarioItem[n] y contrasena = contrasenaItem[n] Entonces
+			logueado <- Verdadero;
+		FinSi
+		n <- n + 1;
+	FinMientras
+	
+	Si logueado Entonces
+		Escribir "Login exitoso. Usted recibirá un descuento del 10%.";
+	SiNo
+		Escribir "Login fallido. No recibirá descuento.";
+	FinSi
 		
     // Inicializamos el menú; esto funciona a modo de Diccionario
     nroItem[0] <- "1. ";
@@ -132,8 +144,10 @@ FinProceso
 
 // Tareas a realizar
 // 1_ Crear un bucle en el caso que se elija mal la hamburguesa [LISTO]
-// 2_ Crear un array con clientes
+// 2_ Crear un array con clientes [LISTO]
 // 3_ Ver la lógica en el adicional de extra carne cuando se eligió hamburguesa doble
 // 4_ Añadir lógica de precios en tipos de papas
 // 5_ Añadir lógica de precios en tipos de gaseosa
 // 6_ Refactorizar el código --> Final [INICIADO]
+// 7_ Se podría crear una función para crear usuario
+// 8_ Realizar un bucle para productos adicionales al introducir un dato no válido
