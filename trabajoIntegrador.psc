@@ -142,7 +142,7 @@ Proceso trabajoIntegrador
 FinProceso
 
 
-// Tareas a realizar
+// Tareas a realizar:
 // 1_ Crear un bucle en el caso que se elija mal la hamburguesa [LISTO]
 // 2_ Crear un array con clientes [LISTO]
 // 3_ Ver la lógica en el adicional de extra carne cuando se eligió hamburguesa doble
@@ -151,3 +151,19 @@ FinProceso
 // 6_ Refactorizar el código --> Final [INICIADO]
 // 7_ Se podría crear una función para crear usuario
 // 8_ Realizar un bucle para productos adicionales al introducir un dato no válido
+// 9_ Crear función de la compra de producto
+// 10_ Añadir n° de ticket en cada compra (Bloqueado por punto 9) 
+// 11_ Historial de compra del usuario.
+// 12_ Informar al usuario el pedido --> tiempo de espera (utilizar función esperar)
+// 13_ Crear lógica de compra en pesos(opcional)
+// 14_ Compra con Tarjeta (Bloqueado por punto 13)
+
+
+// Requisitos:
+// 1_ Ciclos
+// 2_ Condicionales
+// 3_ Arreglos
+// 4_ Matrices
+// 5_ Funciones
+// 6_ Recursividad (opcional)
+// 7_ Video de presenracion 15' - 30'
