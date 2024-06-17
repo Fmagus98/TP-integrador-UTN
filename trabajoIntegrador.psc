@@ -14,6 +14,13 @@ Proceso trabajoIntegrador
 	Definir tipoHamburguesa, extraCarne, papas, gaseosa Como Caracter;
     Definir total, descuento, tiempoEspera Como Real;
     Definir ticket Como Caracter;
+	
+	//Definimos las variables para utilizar en el historial de compras del usuario
+	Definir historial Como Cadena;
+	Dimension  historial[100];
+	Definir indiceHistorial Como Entero;
+	Definir compra Como Cadena;
+	Definir verHistorial Como Caracter;
     
 	//Usuarios Precargados
 	usuarioItem[0] <- "admin";
@@ -27,6 +34,9 @@ Proceso trabajoIntegrador
     total <- 0;
     descuento <- 0.1; // 10% de descuento para usuarios logueados
     tiempoEspera <- 10; // Tiempo de espera en minutos base
+	
+	//Inicializamos el historial 
+	indiceHistorial <- 0;
 	
     // Proceso de Login
     Escribir "Bienvenido a la Tienda de Comidas Rápidas";
@@ -139,6 +149,44 @@ Proceso trabajoIntegrador
 	
 	Escribir " Tiempo de espera: ", ConvertirATexto(tiempoEspera), " minutos";
 	Escribir "--------------------------------";	
+	
+	//----------------------------------- Historial de compras del usuario -------------------------------------------
+	// Guardamos la compra en el historial
+	compra <- nombres[tipo];
+    compra <- Concatenar(compra, " - $");
+    compra <- Concatenar(compra, ConvertirATexto(precios[tipo]));
+	
+    Si extraCarne = 'S' o extraCarne = 's' Entonces
+        compra <- Concatenar(compra, " + Carne extra: $500");
+    FinSi
+    Si papas = 'S' o papas = 's' Entonces
+        compra <- Concatenar(compra, " + Papas fritas: $250");
+    FinSi
+    Si gaseosa = 'S' o gaseosa = 's' Entonces
+        compra <- Concatenar(compra, " + Gaseosa: $1000");
+    FinSi
+    Si logueado = Verdadero Entonces        
+        compra <- Concatenar(compra, " + Descuento del 10% => Total: $");
+        compra <- Concatenar(compra, ConvertirATexto(total));
+    SiNo
+        compra <- Concatenar(compra, " Total: $");
+        compra <- Concatenar(compra, ConvertirATexto(total));
+    FinSi
+	
+    // Añadimos la compra al historial
+    historial[indiceHistorial] <- compra;
+    indiceHistorial <- indiceHistorial + 1;
+	
+    // Mostramos el historial de compras si el usuario lo desea
+    Escribir "¿Desea ver el historial de compras? (S/N): ";
+    Leer verHistorial;
+    Si verHistorial = 'S' o verHistorial = 's' Entonces
+        Escribir "------- Historial de Compras -------";
+        Para i <- 0 Hasta indiceHistorial - 1 Hacer
+            Escribir historial[i];
+        FinPara
+        Escribir "-------------------------------------";
+    FinSi
 FinProceso
 
 
