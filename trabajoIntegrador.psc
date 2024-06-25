@@ -43,10 +43,10 @@ Proceso trabajoIntegrador
 	Escribir CartelBienvenida;
 	
     // Proceso de Login
-    Escribir "Bienvenido a la Tienda de Comidas RÃ¡pidas";
+    Escribir "Bienvenido a la Tienda de Comidas Rápidas";
     Escribir "Ingrese su nombre de usuario: ";
     Leer usuario;
-    Escribir "Ingrese su contraseÃ±a: ";
+    Escribir "Ingrese su contraseña: ";
     Leer contrasena;
     n <- 0;
 	
@@ -58,12 +58,12 @@ Proceso trabajoIntegrador
 	FinMientras
 	
 	Si logueado Entonces
-		Escribir "Login exitoso. Usted recibirÃ¡ un descuento del 10%.";
+		Escribir "Login exitoso. Usted recibirá un descuento del 10%.";
 	SiNo
-		Escribir "Login fallido. No recibirÃ¡ descuento.";
+		Escribir "Login fallido. No recibirá descuento.";
 	FinSi
-		
-    // Inicializamos el menÃº; esto funciona a modo de Diccionario
+	
+    // Inicializamos el menú; esto funciona a modo de Diccionario
     nroItem[0] <- "1. ";
 	nombres[0] <- "Hamburguesa Simple";
     precios[0] <- 500;
@@ -78,15 +78,15 @@ Proceso trabajoIntegrador
     nombres[2] <- "Hamburguesa Triple";
     precios[2] <- 1500;
     tiempos[2] <- 4;
-
-    // Mostrar MenÃº
-	Escribir "MenÃº:";
+	
+    // Mostrar Menú
+	Escribir "Menú:";
     Para i <- 0 Hasta 2 Hacer
         Escribir nroItem[i], nombres[i], " - $", precios[i];
     FinPara
     Escribir "Seleccione el tipo de hamburguesa (1-3):";
     
-    // SelecciÃ³n del tipo de hamburguesa
+    // Selección del tipo de hamburguesa
     Repetir
         Leer tipoHamburguesa;
         Si tipoHamburguesa >= "1" y tipoHamburguesa <= "3" Entonces
@@ -95,35 +95,34 @@ Proceso trabajoIntegrador
             total <- total + precios[tipo];
             tiempoEspera <- tiempoEspera + tiempos[tipo];
         Sino
-            Escribir "SelecciÃ³n invÃ¡lida. Intente nuevamente.";
+            Escribir "Selección inválida. Intente nuevamente.";
         FinSi
     Hasta Que tipoHamburguesa >= "1" y tipoHamburguesa <= "3"
-  
+	
 	// Opciones adicionales
-	Escribir "Â¿Desea carne extra? (S/N) --> $500: ";
+	Escribir "¿Desea carne extra? (S/N) --> $500: ";
 	Leer extraCarne;
+	Repetir
+		Escribir "Seleccion invalida intente nuevamente";
+		Escribir "¿Desea carne extra? (S/N) --> $500: ";
+		Leer extraCarne;
+	Hasta Que extraCarne = "S" o extraCarne = "s" o extraCarne = 'N' o extraCarne = 'n'; 
 	
-	Si extraCarne = 'S' o extraCarne = 's' Entonces
-		total <- total + 500;
-		tiempoEspera <- tiempoEspera + 3;
-		// en el caso de que elija hamburguesa doble, ver que se le puede informar al usuario
-	FinSi
-	
-	Escribir "Â¿Desea papas fritas? (S/N) --> $250:";
+	Escribir "¿Desea papas fritas? (S/N) --> $250:";
 	Leer papas;
-	Si papas = 'S' o papas = 's' Entonces
-		total <- total + 250;
-		tiempoEspera <- tiempoEspera + 2;
-		// aÃ±adir tipos de papas
-	FinSi
+	Repetir
+		Escribir "Seleccion invalida intentelo nuevamente";
+		Escribir "¿Desea papas fritas? (S/N) --> $250:";
+		Leer papas;
+	Hasta Que papas = 'S' o papas ='s' o papas = 'N' o papas = 'n';
 	
-	Escribir "Â¿Desea gaseosa? (S/N) --> $1000:";
+	Escribir "¿Desea gaseosa? (S/N) --> $1000:";
 	Leer gaseosa;
-	Si gaseosa = 'S' o gaseosa = 's' Entonces
-		total <- total + 1000;
-		tiempoEspera <- tiempoEspera + 1;
-		// aÃ±adir tipos de gaseosas
-	FinSi
+	Repetir
+		Escribir "Seleccion invalida intentelo Nuevamente";
+		Escribir "¿Desea gaseosa? (S/N) --> $1000:";
+		Leer gaseosa;
+	Hasta Que gaseosa = 'S' o gaseosa = 's' o gaseosa = 'N' o gaseosa = 'n';
 	
 	// Generar numero de ticket y mostrarlo
 	numeroTicket <- azar(1000);
@@ -144,19 +143,25 @@ Proceso trabajoIntegrador
 	Escribir "Tu Pedido: ";
 	Escribir " ", nombres[tipo], ": $ ", ConvertirATexto(precios[tipo]);
 	
-	Si extraCarne = 'S' o extraCarne = 's' Entonces
+	Si extraCarne = 'S' o extraCarne = 's'  Entonces
 		Escribir " + Carne extra: $ 500";
+		total <- total + 500;
+		tiempoEspera <- tiempoEspera + 3;
 	FinSi
 	
 	Si papas = 'S' o papas = 's' Entonces
 		Escribir " + Papas fritas: $ 250";
+		total <- total + 250;
+		tiempoEspera <- tiempoEspera + 2;
 	FinSi
 	
 	Si gaseosa = 'S' o gaseosa = 's' Entonces
 		Escribir " + Gaseosa: $ 1000";
+		total <- total + 1000;
+		tiempoEspera <- tiempoEspera + 1;
 	FinSi
 	
-	// Aplicar descuento si estÃ¡ logueado
+	// Aplicar descuento si está logueado
 	Si logueado = Verdadero Entonces		
 		total <- total * (1 - descuento);		
 		Escribir "  + Descuento del 10% => Total:";
@@ -200,12 +205,12 @@ Proceso trabajoIntegrador
         compra <- Concatenar(compra, ConvertirATexto(total));
     FinSi
 	
-    // AÃ±adimos la compra al historial
+    // Añadimos la compra al historial
     historial[indiceHistorial] <- compra;
     indiceHistorial <- indiceHistorial + 1;
 	
     // Mostramos el historial de compras si el usuario lo desea
-    Escribir "Â¿Desea ver el historial de compras? (S/N): ";
+    Escribir "¿Desea ver el historial de compras? (S/N): ";
     Leer verHistorial;
     Si verHistorial = 'S' o verHistorial = 's' Entonces
         Escribir "------- Historial de Compras -------";
@@ -249,18 +254,19 @@ FinSubProceso
 // Tareas a realizar:
 // 1_ Crear un bucle en el caso que se elija mal la hamburguesa [LISTO]
 // 2_ Crear un array con clientes [LISTO]
-// 3_ Ver la lÃ³gica en el adicional de extra carne cuando se eligiÃ³ hamburguesa doble
-// 4_ AÃ±adir lÃ³gica de precios en tipos de papas
-// 5_ AÃ±adir lÃ³gica de precios en tipos de gaseosa
-// 6_ Refactorizar el cÃ³digo --> Final [INICIADO]
-// 7_ Se podrÃ­a crear una funciÃ³n para crear usuario
-// 8_ Realizar un bucle para productos adicionales al introducir un dato no vÃ¡lido
-// 9_ Crear funciÃ³n de la compra de producto
-// 10_ AÃ±adir nÂ° de ticket en cada compra (Bloqueado por punto 9) [LISTO]
+// 3_ Ver la lógica en el adicional de extra carne cuando se eligió hamburguesa doble
+// 4_ Añadir lógica de precios en tipos de papas
+// 5_ Añadir lógica de precios en tipos de gaseosa
+// 6_ Refactorizar el código --> Final [INICIADO]
+// 7_ Se podría crear una función para crear usuario
+// 8_ Realizar un bucle para productos adicionales al introducir un dato no válido[LISTO]
+// 9_ Crear función de la compra de producto
+// 10_ Añadir n° de ticket en cada compra (Bloqueado por punto 9) [LISTO]
 // 11_ Historial de compra del usuario.
-// 12_ Informar al usuario el pedido --> tiempo de espera (utilizar funciÃ³n esperar)
-// 13_ Crear lÃ³gica de compra en pesos(opcional)
+// 12_ Informar al usuario el pedido --> tiempo de espera (utilizar función esperar)
+// 13_ Crear lógica de compra en pesos(opcional)
 // 14_ Compra con Tarjeta (Bloqueado por punto 13)
+// 15_ Dibujos con caracteres de los productos [LISTO]
 
 
 // Requisitos:
