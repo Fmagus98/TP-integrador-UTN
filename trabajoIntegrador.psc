@@ -101,11 +101,11 @@ Proceso trabajoIntegrador
 			Escribir "Login Exitoso!";
 			logueado <- Verdadero;
 			z <- 9;
-		SiNo
-			Escribir "No tenes el 10% de descuento";
-		FinSi
 	FinPara
 	
+	Si logueado = Falso Entonces 
+		Escribir "No tenes el 10% de descuento";
+	FinSi
 	// Inicializamos el menú; esto funciona a modo de Diccionario
 	nroItem[0] <- "1. ";
 	nombres[0] <- "Hamburguesa Simple";
