@@ -8,18 +8,6 @@ Funcion registrausuario(id,nombre,i,contrasenaLogin)
 	Escribir "Registro exitoso";
 FinFuncion
 
-Funcion mostrarusuarios(id ,nombre ,i ,contrasenaLogin)
-	Definir f Como Logico;;
-	Si (cont > 0) Entonces
-		Escribir "registros actuales ", cont;
-		Para f <- 1 Hasta i Con Paso 1 Hacer
-			Escribir id(f), " ", nombre(f), contrasenaLogin(f);
-		FinPara
-	SiNo
-		Escribir "no hay registros";
-	FinSi
-FinFuncion
-
 Proceso trabajoIntegrador
 	Definir usuario, contrasena Como Caracter;
 	Definir usuarioCorrecto, contrasenaCorrecta Como Caracter;
@@ -64,6 +52,8 @@ Proceso trabajoIntegrador
 	
 	//Mostrar Cartel Bienvenida
 	Escribir CartelBienvenida;
+	Esperar 2 segundos;
+	Limpiar Pantalla;
 	k <- 1;
 	cont <- 0;
 	Escribir "Bienvenido al registro de usuario de comidas rapidas";
@@ -85,17 +75,12 @@ Proceso trabajoIntegrador
 		Escribir "elige la opcion deseada";
 		Escribir "1. Registrar";
 		Escribir "2. Iniciar sesion";
-		Escribir "3. Mostrar los usuarios activos";
 		Leer op;
-	Hasta Que op <>"1"o op <>"2"o op <>"3" o op = ""
+	Hasta Que op ="1"o op ="2"
 	Si op = "1" Entonces
 		k<- k+1;
 		registrausuario(id,nombre,k,contrasenaLogin);
 		cont <- cont+1;
-	SiNo
-		Si op = "3" Entonces
-			mostrarusuarios(id , nombre, k,contrasenaLogin);
-		FinSi
 	FinSi
 	
 	
