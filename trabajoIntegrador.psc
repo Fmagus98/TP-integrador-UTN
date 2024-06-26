@@ -1,14 +1,41 @@
+//funcion para crear usuario
+Funcion registrausuario(id,nombre,i,contrasenaLogin)
+	id[i] <- i;
+	Escribir "Ingresa el nombre del usuario";
+	Leer nombre[i];
+	Escribir "Ingresa la contraseña";
+	Leer contrasenaLogin[i];
+	Escribir "Registro exitoso";
+FinFuncion
+
+Funcion mostrarusuarios(id ,nombre ,i ,contrasenaLogin)
+	Definir f Como Logico;;
+	Si (cont > 0) Entonces
+		Escribir "registros actuales ", cont;
+		Para f <- 1 Hasta i Con Paso 1 Hacer
+			Escribir id(f), " ", nombre(f), contrasenaLogin(f);
+		FinPara
+	SiNo
+		Escribir "no hay registros";
+	FinSi
+FinFuncion
+
 Proceso trabajoIntegrador
 	Definir usuario, contrasena Como Caracter;
 	Definir usuarioCorrecto, contrasenaCorrecta Como Caracter;
 	Definir usuarioItem, contrasenaItem Como Caracter;
 	Dimension usuarioItem[2],contrasenaItem[2];
 	Definir logueado Como Logico;
-	
+	//funcion para crear usuario
+	Definir nombre,contrasenaLogin Como Caracter;
+	Definir id Como Entero;
+	Definir z Como Entero;
+	Definir cont Como Entero;
+	Definir op Como Caracter;
 	Definir hamburguesa Como Real;
 	Definir nroItem, nombres Como Caracter;
 	Definir precios, tiempos Como Real;
-	Definir i, tipo, n Como Entero;
+	Definir i, tipo, n, k Como Entero;
 	Dimension nroItem[3], nombres[3], precios[3], tiempos[3];
 	
 	Definir tipoHamburguesa, extraCarne, papas, gaseosa Como Caracter;
@@ -27,13 +54,6 @@ Proceso trabajoIntegrador
 	Definir formaPago Como Caracter;												
 	Definir montoPago, vuelto Como Real;
 	
-	//Usuarios Precargados
-	usuarioItem[0] <- "admin";
-	contrasenaItem[0] <- "1234";
-	
-	usuarioItem[1] <- "user";
-	contrasenaItem[1] <- "4321";
-	
 	logueado <- Falso;
 	total <- 0;
 	descuento <- 0.1; // 10% de descuento para usuarios logueados
@@ -44,6 +64,40 @@ Proceso trabajoIntegrador
 	
 	//Mostrar Cartel Bienvenida
 	Escribir CartelBienvenida;
+	k <- 1;
+	cont <- 0;
+	Escribir "Bienvenido al registro de usuario de comidas rapidas";
+	Dimension id[10];
+	Dimension nombre[10];
+	Dimension contrasenaLogin[10];
+	
+	//Usuarios Precargados
+	
+	Para z<-0 Hasta 9 Con Paso 1 Hacer
+		id[z] <- z;
+		nombre[z]<- "admin";
+		contrasenaLogin[z] <- "1234";
+	FinPara
+	
+	op <- "";
+	
+	Repetir
+		Escribir "elige la opcion deseada";
+		Escribir "1. Registrar";
+		Escribir "2. Iniciar sesion";
+		Escribir "3. Mostrar los usuarios activos";
+		Leer op;
+	Hasta Que op <>"1"o op <>"2"o op <>"3" o op = ""
+	Si op = "1" Entonces
+		k<- k+1;
+		registrausuario(id,nombre,k,contrasenaLogin);
+		cont <- cont+1;
+	SiNo
+		Si op = "3" Entonces
+			mostrarusuarios(id , nombre, k,contrasenaLogin);
+		FinSi
+	FinSi
+	
 	
 	// Proceso de Login
 	Escribir "Bienvenido a la Tienda de Comidas Rápidas";
@@ -52,21 +106,20 @@ Proceso trabajoIntegrador
 	Escribir "Ingrese su contraseña: ";
 	Leer contrasena;
 	n <- 0;
+	logueado <- Falso;
 	
 	Limpiar Pantalla;
 	
-	Mientras n < 2 y logueado == Falso Hacer
-		Si usuario = usuarioItem[n] y contrasena = contrasenaItem[n] Entonces
-			logueado <- Verdadero;
-		FinSi
-		n <- n + 1;
-	FinMientras
 	
-	Si logueado Entonces
-		Escribir "Login exitoso. Usted recibirá un descuento del 10%.";
-	SiNo
-		Escribir "Login fallido. No recibirá descuento.";
-	FinSi
+	Para z <- 0 Hasta 9 Con Paso 1 Hacer
+		Si usuario = nombre[z] y contrasena = contrasenaLogin[z] Entonces
+			Escribir "Login Exitoso!";
+			logueado <- Verdadero;
+			z <- 9;
+		SiNo
+			Escribir "No tenes el 10% de descuento";
+		FinSi
+	FinPara
 	
 	// Inicializamos el menú; esto funciona a modo de Diccionario
 	nroItem[0] <- "1. ";
@@ -116,11 +169,13 @@ Proceso trabajoIntegrador
 	Hasta Que papas = 'S' o papas ='s' o papas = 'N' o papas = 'n';
 	
 	Repetir
-		Escribir "¿Desea gaseosa? (S/N) --> $1000:";
+		Escribir "¿Desea gaseosa? (S/N)";
 		Leer gaseosa;
 	Hasta Que gaseosa = 'S' o gaseosa = 's' o gaseosa = 'N' o gaseosa = 'n';
 	
+	
 	Limpiar Pantalla;
+	
 	// Selección de la forma de pago
 	Repetir 
 		Escribir "Seleccione la forma de pago(indique el número):";
@@ -149,8 +204,8 @@ Proceso trabajoIntegrador
 			// Esto es necesario para evitar errores en el subproceso 'GenerarTicket_HistorialdeCompras', 
 			// que espera que 'vuelto' siempre tenga un valor
 		FinSi 
+		
 	FinSi
-	
 	Limpiar Pantalla;
 	
 	// Generar ticket y guardar historial
@@ -158,6 +213,7 @@ Proceso trabajoIntegrador
 	GenerarTicket_HistorialdeCompras(vuelto, usuario, tipo, extraCarne, papas, gaseosa, total, tiempoEspera, logueado, nombres, precios, indiceHistorial, historial);
 	
 	indiceHistorial <- indiceHistorial + 1;
+	
 	
 	// Mostramos el historial de compras si el usuario lo desea
 	Escribir "¿Desea ver el historial de compras? (S/N): ";
@@ -337,3 +393,4 @@ FinSubProceso
 // 5_ Funciones
 // 6_ Recursividad (opcional)
 // 7_ Video de presenracion 15' - 30'
+
