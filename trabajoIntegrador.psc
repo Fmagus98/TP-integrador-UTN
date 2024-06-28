@@ -199,8 +199,8 @@ Proceso trabajoIntegrador
 		Escribir " ";
 		Escribir "¿Desea carne extra? (S/N) --> $500: ";
 		Leer extraCarne;		
-		Si extraCarne = "S" o extraCarne = "s" entonces //Agregue esta condicional en todas las opciones adicionales porque sino los suma aunque ingrese una letra cualquiera.
-			total <- total + 500; //esto estaba en el ticket, pero lo reposicione aqui para que vaya sumandose al total, asi no hay error al ingresar un monto en la linea 250.(borrar comentario)
+		Si extraCarne = "S" o extraCarne = "s" entonces 
+			total <- total + 500; 
 			tiempoEspera <- tiempoEspera + 3;
 		FinSi
 	Hasta Que extraCarne = "S" o extraCarne = "s" o extraCarne = 'N' o extraCarne = 'n'; 
@@ -517,19 +517,16 @@ FinSubProceso
 
 
 // Tareas a realizar:
-// 1_ Crear un bucle en el caso que se elija mal la hamburguesa [LISTO]
-// 2_ Crear un array con clientes [LISTO]
-// 3_ Ver la lógica en el adicional de extra carne cuando se eligió hamburguesa doble [LISTO]
-// 4_ Añadir lógica de precios en tipos de papas [LISTO]
-// 5_ Añadir lógica de precios en tipos de gaseosa [LISTO]
-// 6_ Refactorizar el código --> Final [INICIADO]
-// 7_ Se podría crear una función para crear usuario [LISTO]
-// 8_ Realizar un bucle para productos adicionales al introducir un dato no válido [LISTO]
-// 9_ Crear función de la compra de producto [LISTO]
-// 10_ Añadir n° de ticket en cada compra (Bloqueado por punto 9) [LISTO]
-// 11_ Historial de compra del usuario. [LISTO]
-// 12_ Informar al usuario el pedido --> tiempo de espera (utilizar función esperar) [LISTO]
-// 13_ Crear lógica de compra en pesos(opcional) [LISTO]
+// 1_ Crear un bucle en el caso que se elija mal la hamburguesa [LISTO]  ==> Manu
+// 2_ Ver la lógica en el adicional de extra carne cuando se eligió hamburguesa doble [LISTO] ==> Fede
+// 3_ Añadir lógica de precios en tipos de papas [LISTO] ==> Julian
+// 4_ Añadir lógica de precios en tipos de gaseosa [LISTO] ==> Amin 
+// 5_ Se podría crear una función para crear usuario [LISTO] ==> Cirano
+// 6_ Realizar un bucle para productos adicionales al introducir un dato no válido [LISTO] ==> Fare 
+// 7_ Añadir n° de ticket en cada compra (Bloqueado por punto 9) [LISTO] ==> Nacho
+// 8_ Historial de compra del usuario. [LISTO] ==> Maria 
+// 9_ Crear lógica de compra en efetivo o debito [LISTO] ==> Meli
+// 10_ Refactorizar el código --> Final [INICIADO] ==> TODOS
 
 
 // Requisitos:
