@@ -295,7 +295,7 @@ Proceso trabajoIntegrador
 	Hasta Que gaseosa = 'S' o gaseosa = 's' o gaseosa = 'N' o gaseosa = 'n';
 	
 	Si logueado Entonces
-        total <- total * (1 - 0.1);  //esto estaba en el subproceso del historial de compras. El error que generaba era que le hacia el descuento al descuento.(borrar comentario)
+        total <- total * (1 - 0.1);  
     FinSi
 	
 	Limpiar Pantalla;
@@ -318,11 +318,11 @@ Proceso trabajoIntegrador
 		Escribir "             **Usted eligió pagar en efectivo**";
 		Escribir " ";
 		Repetir
-			Escribir "Ingrese el monto con el que va a pagar: "; //Aqui antes me aceptaba cualquier valor mayor o igual al precio base de la hamburguesa, ya que las opciones adicionales empezaban a sumar recien en el subproceso.(borrar comentario)
+			Escribir "Ingrese el monto con el que va a pagar: "; 
 			Leer montoPago;
 		Hasta Que montoPago >= total 
 		
-		vuelto <- montoPago - total;  //Aqui habia un "Si" estaba logeado, hacia un calculo, y si no estaba logeado hacia otro calculo. Esto lo resumi en uno solo porque se soluciona en la linea 227. Antes te calculaba un vuelto del descuento al descuento (que quilombo) (borrar comentario)
+		vuelto <- montoPago - total;  
 		
 		Limpiar Pantalla;
 		
